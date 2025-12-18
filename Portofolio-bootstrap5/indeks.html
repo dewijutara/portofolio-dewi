@@ -1,0 +1,1050 @@
+      <!DOCTYPE html>
+      <html lang="id">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Botanical Bliss Coffee</title>
+
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <!-- Tambahkan tepat sebelum penutup </body> -->
+          <!-- MUSIC & WHATSAPP -->
+          <div
+            style="
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              display: flex;
+              gap: 10px;
+              z-index: 9000;
+            "
+          >
+            <div
+              id="musicBtn"
+              style="
+                background: var(--primary);
+                padding: 12px 18px;
+                border-radius: 50px;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              🔊 Musik
+              <span class="pulse"></span>
+            </div>
+            <a
+              href="https://wa.me/6285881601103"
+              id="waBtn"
+              style="
+                background: #25d366;
+                padding: 12px 18px;
+                border-radius: 50px;
+                color: white;
+                font-weight: 700;
+                text-decoration: none;
+                position: relative;
+                overflow: hidden;
+              "
+            >
+              💬 WhatsApp
+              <span class="pulse"></span>   
+            
+            </a>
+            <script>
+                    const waBtn = document.getElementById("waBtn");
+          const waNumber = "6285881601103"; // ganti nomor WA kamu
+
+          waBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const text = "Halo! 👋 Terima kasih telah menghubungi Botanical Bliss Coffee, Jangan lupa cek menu spesial hari ini ☕✨ ,Silakan tulis pesanan kamu di bawah ini, dan kami akan siapkan secepatnya";
+            
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, "_blank");
+
+    });
+            </script>
+          </div>
+
+          <audio
+            id="bgMusic"
+            src="https://youtu.be/kLfjhSmvFjM?si=pvTRDdcv2o8C209u"
+            loop
+          ></audio>
+
+          <style>
+            /* Animasi Gelombang/Pulse */
+            .pulse {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 100%;
+              height: 100%;
+              background: rgba(255, 255, 255, 0.3);
+              border-radius: 50%;
+              transform: translate(-50%, -50%) scale(0);
+              animation: pulse 2s infinite;
+              z-index: 0;
+            }
+
+            #waBtn .pulse {
+              background: rgba(37, 211, 102, 0.5);
+            }
+
+            @keyframes pulse {
+              0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.7;
+              }
+              50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.3;
+              }
+              100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+              }
+              
+            }
+          </style>
+
+          <script>
+            // Musik otomatis
+            const musicBtn = document.getElementById("musicBtn");
+            const bgMusic = document.getElementById("bgMusic");
+            let isPlaying = false;
+
+            musicBtn.onclick = () => {
+              if (!isPlaying) {
+                bgMusic.play();
+                isPlaying = true;
+                musicBtn.textContent = "🔊 Musik (On)";
+              } else {
+                bgMusic.pause();
+                isPlaying = false;
+                musicBtn.textContent = "🔊 Musik (Off)";
+              }
+            };
+
+            // Main musik otomatis saat halaman load
+            window.addEventListener("load", () => {
+              bgMusic.play().catch(() => {}); // otomatis play, tapi browser mungkin minta interaksi
+              isPlaying = true;
+              musicBtn.textContent = "🔊 Musik (On)";
+            });
+          </script>
+
+          <style>
+            /* --------------------------------------------------
+        ROOT VARIABLES
+      -------------------------------------------------- */
+            :root {
+              --primary: #b6895b;
+              --bg-dark: #1a1307;
+              --bg-light: #f4eee6;
+              --text-dark: #1a1307;
+              --text-light: #ffffff;
+              --muted-light: #d8cdbd;
+
+              --bg: var(--bg-dark);
+              --text: var(--text-light);
+              --muted: var(--muted-light);
+
+              --transition: 0.3s ease;
+            }
+
+            /* Light Mode */
+            .light-mode {
+              --bg: var(--bg-light);
+              --text: #1a1307;
+              --muted: #6f604b;
+            }
+
+            /* --------------------------------------------------
+        GLOBAL
+      -------------------------------------------------- */
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: "Poppins", sans-serif;
+            }
+
+            html {
+              scroll-behavior: smooth;
+            }
+            body {
+              background-color: var(--bg);
+              color: var(--text);
+              overflow-x: hidden;
+              position: relative;
+            }
+
+            /* --------------------------------------------------
+        PARALLAX BACKGROUND
+      -------------------------------------------------- */
+            body::before {
+              content: "";
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-image: url("https://share.google/images/iwPQylozv0kkP39xI");
+              background-size: cover;
+              background-position: center;
+              opacity: 0.18;
+              z-index: -1;
+            }
+
+            /* --------------------------------------------------
+        PRELOADER
+      -------------------------------------------------- */
+            #preloader {
+              position: fixed;
+              inset: 0;
+              background: var(--bg);
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              z-index: 9999;
+            }
+
+            .loader {
+              width: 50px;
+              height: 50px;
+              border: 5px solid #fff3;
+              border-top-color: var(--primary);
+              border-radius: 50%;
+              animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+              to {
+                transform: rotate(360deg);
+              }
+            }
+
+            #preloader p {
+              margin-top: 15px;
+            }
+
+            /* --------------------------------------------------
+        NAVBAR
+      -------------------------------------------------- */
+            nav {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 1rem 5%;
+              background-color: rgba(0, 0, 0, 0.6);
+              backdrop-filter: blur(6px);
+              position: sticky;
+              top: 0;
+              z-index: 10;
+            }
+
+            .logo {
+              color: var(--primary);
+              font-weight: 700;
+              font-size: 1.8rem;
+            }
+
+            nav ul {
+              list-style: none;
+              display: flex;
+              gap: 2rem;
+            }
+
+            nav ul li a {
+              color: white;
+              text-decoration: none;
+              font-weight: 600;
+              transition: var(--transition);
+            }
+            nav ul li a:hover {
+              color: var(--primary);
+            }
+
+            /* Hamburger */
+            .hamburger {
+              display: none;
+              flex-direction: column;
+              cursor: pointer;
+            }
+            .hamburger span {
+              width: 28px;
+              height: 3px;
+              background: white;
+              margin: 4px 0;
+              transition: 0.3s;
+            }
+
+            /* --------------------------------------------------
+        THEME TOGGLE (DARK/LIGHT)
+      -------------------------------------------------- */
+            .theme-toggle {
+              position: fixed;
+              right: 20px;
+              bottom: 20px;
+              background: var(--primary);
+              padding: 12px 14px;
+              border-radius: 50%;
+              cursor: pointer;
+              font-size: 20px;
+              color: #fff;
+              box-shadow: 0 4px 10px #0005;
+              z-index: 999;
+            }
+
+            /* --------------------------------------------------
+        HERO SECTION
+      -------------------------------------------------- */
+            .hero {
+              max-width: 1200px;
+              margin: 5rem auto;
+              padding: 0 5%;
+              display: flex;
+              align-items: center;
+              gap: 3rem;
+            }
+
+            .hero-text h1 {
+              font-size: 3rem;
+              line-height: 1.2;
+              min-height: 70px;
+            }
+
+            .hero-text p {
+              color: var(--muted);
+              margin: 1rem 0 2rem;
+            }
+
+            .btn-primary {
+              background: var(--primary);
+              color: var(--bg);
+              padding: 0.8rem 2rem;
+              font-weight: 700;
+              border-radius: 30px;
+              text-decoration: none;
+              transition: 0.3s;
+            }
+            .btn-primary:hover {
+              background: #a77747;
+            }
+
+            /* CUP + SMOKE */
+            .cup {
+              position: relative;
+              width: 260px;
+            }
+            .cup img {
+              width: 100%;
+            }
+
+            .steam {
+              position: absolute;
+              top: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 20px;
+              height: 80px;
+              background: linear-gradient(to top, #ffffff55, transparent);
+              border-radius: 50%;
+              filter: blur(10px);
+              animation: steam 4s infinite;
+            }
+            @keyframes steam {
+              0% {
+                opacity: 0;
+                transform: translate(-50%, 30px) scale(0.6);
+              }
+              50% {
+                opacity: 1;
+                transform: translate(-50%, -10px) scale(1);
+              }
+              100% {
+                opacity: 0;
+                transform: translate(-50%, -40px) scale(0.8);
+              }
+            }
+
+            /* --------------------------------------------------
+        SECTIONS
+      -------------------------------------------------- */
+            section {
+              padding: 3rem 5%;
+              max-width: 1200px;
+              margin: auto;
+            }
+
+            h2 {
+              color: var(--primary);
+              text-align: center;
+              margin-bottom: 20px;
+            }
+
+            .fade-in {
+              opacity: 0;
+              transform: translateY(40px);
+              transition: 1s ease;
+            }
+            .fade-in.show {
+              opacity: 1;
+              transform: translateY(0);
+            }
+
+            /* --------------------------------------------------
+        MENU GRID
+      -------------------------------------------------- */
+            .menu-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 2rem;
+            }
+
+            .menu-item {
+              background: rgba(255, 255, 255, 0.07);
+              padding: 1rem;
+              border-radius: 15px;
+              text-align: center;
+              transition: 0.3s;
+            }
+            .menu-item:hover {
+              transform: translateY(-6px);
+            }
+            .menu-item img {
+              width: 100%;
+              border-radius: 12px;
+              margin-bottom: 10px;
+            }
+            .price {
+              font-weight: 700;
+              margin-top: 5px;
+            }
+
+            /* --------------------------------------------------
+        CONTACT
+      -------------------------------------------------- */
+            .contact form {
+              max-width: 500px;
+              margin: 0 auto;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            }
+
+            .contact input,
+            .contact textarea {
+              padding: 0.8rem;
+              border: none;
+              border-radius: 10px;
+              background: rgba(255, 255, 255, 0.12);
+              color: white;
+            }
+
+            /* --------------------------------------------------
+        WHATSAPP BUTTON
+      -------------------------------------------------- */
+            .wa-btn {
+              position: fixed;
+              bottom: 90px;
+              right: 20px;
+              background: #25d366;
+              padding: 12px 18px;
+              border-radius: 30px;
+              color: white;
+              font-weight: 700;
+              text-decoration: none;
+              box-shadow: 0 4px 10px #0008;
+              z-index: 999;
+            }
+
+            /* --------------------------------------------------
+        FOOTER
+      -------------------------------------------------- */
+            footer {
+              background: rgba(0, 0, 0, 0.6);
+              text-align: center;
+              padding: 2rem;
+              margin-top: 3rem;
+            }
+
+            /* --------------------------------------------------
+        RESPONSIVE
+      -------------------------------------------------- */
+            @media (max-width: 768px) {
+              .hero {
+                flex-direction: column;
+                text-align: center;
+              }
+              nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                gap: 1.5rem;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 2rem 0;
+                transition: 0.3s;
+              }
+              nav ul.active {
+                left: 0;
+              }
+              .hamburger {
+                display: flex;
+              }
+            }
+          </style>
+          <style>
+            /* Tombol Tambah Keranjang */
+            .add-cart-btn {
+              .cart-btn-top {
+                @media (max-width: 768px) {
+                  .cart-btn-top {
+                    top: 95px; /* aman di HP, tidak menutupi navbar */
+                    right: 15px;
+                  }
+                }
+
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: transparent;
+                padding: 12px 18px;
+                border-radius: 50px;
+                color: white;
+                font-weight: 700;
+                cursor: pointer;
+                box-shadow: none;
+                z-index: 9999;
+                font-size: 15px;
+                border: none; /* TANPA BORDER */
+              }
+            }
+            .add-cart-btn:hover {
+              background: #a77747;
+            }
+
+            /* Cart Button di pojok kanan atas */
+            .cart-btn-top {
+              .cart-btn-top {
+                position: fixed;
+                top: 80px; /* posisi aman, tidak menutupi kontak */
+                right: 20px;
+                background: transparent; /* HILANGKAN WARNA */
+                padding: 12px 18px;
+                border-radius: 50px;
+                color: white; /* warna ikon */
+                font-weight: 700;
+                cursor: pointer;
+                box-shadow: none; /* hilangkan bayangan jika mau */
+                z-index: 9999;
+                font-size: 15px;
+                border: 2px solid white; /* opsional: biar tetap terlihat */
+              }
+            }
+
+            /* Modal Keranjang */
+            #cartModal {
+              position: fixed;
+              inset: 0;
+              background: #0008;
+              display: none;
+              justify-content: center;
+              align-items: center;
+              z-index: 99999;
+            }
+            .cart-box {
+              background: var(--bg);
+              padding: 20px;
+              width: 90%;
+              max-width: 400px;
+              border-radius: 12px;
+              color: var(--text);
+            }
+            .cart-item {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 8px;
+            }
+            .cart-total {
+              font-weight: bold;
+              margin-top: 10px;
+              text-align: center;
+            }
+            .checkout-btn {
+              width: 100%;
+              background: #25d366;
+              padding: 10px;
+              border-radius: 10px;
+              color: white;
+              font-weight: bold;
+              margin-top: 10px;
+              cursor: pointer;
+            }
+            .close-cart {
+              width: 100%;
+              background: #ff5252;
+              padding: 10px;
+              border-radius: 10px;
+              color: white;
+              font-weight: bold;
+              margin-top: 10px;
+              cursor: pointer;
+              text-align: center;
+            }
+          </style>
+        </head>
+
+        <body>
+          <!-- CART BUTTON -->
+
+          <!-- PRELOADER -->
+          <div id="preloader">
+            <div class="loader"></div>
+            <p>Sedang Menyiapkan Kopi...</p>
+          </div>
+
+          <!-- THEME TOGGLE -->
+          <div class="theme-toggle" id="themeButton">🌙</div>
+
+          <!-- NAVBAR -->
+          <nav>
+            <div class="logo">Botanical Bliss Coffee</div>
+
+            <ul id="nav-menu">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">Tentang</a></li>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#contact">Kontak</a></li>
+            </ul>
+              <div class="nav-icons">
+              <button id="cartBtn" title="Keranjang">🛒<span id="cartCount">0</span></button>
+              <button id="shareBtn" title="Share">🔗</button>
+              
+  <script>
+    
+  </script>
+            <div class="hamburger" id="hamburger">
+              <span></span><span></span><span></span>
+            </div>
+            <!-- CART MODAL -->
+
+          </div>
+
+          </nav>
+
+          <!-- HERO -->
+          <section id="home" class="hero fade-in">
+            <div class="hero-text">
+              <h1><span id="typing"></span></h1>
+              <p>Kopi premium yang diracik dengan cinta di setiap tegukan.</p>
+              <a href="#menu" class="btn-primary">Beli Sekarang</a>
+            </div>
+
+            <div class="hero-img">
+              <div class="cup">
+                <img src="" />
+
+                <div class="steam"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ABOUT -->
+          <section id="about" class="fade-in">
+            <h2>Tentang Kami</h2>
+            <p>
+              Botanical Bliss Coffee menghadirkan pengalaman kopi terbaik dari biji
+              kopi pilihan petani lokal. Botanical Bliss Coffee hadir untuk membawa
+              pengalaman kopi premium yang berbeda. Kami memilih biji kopi terbaik
+              dari petani lokal, kemudian menyeduhnya dengan teknik modern dan
+              sentuhan tradisional agar setiap tegukan menghadirkan aroma dan rasa
+              yang kaya.
+            </p>
+          </section>
+
+            <!-- MENU -->
+            <section id="menu" class="fade-in">
+              <h2>Menu Kami</h2>
+                  <!-- Input Pencarian: letakkan di sini, tepat di atas .menu-grid -->
+              <div style="text-align:center; margin-bottom:1.5rem;">
+                <input type="text" id="menuSearch" placeholder="Cari menu kopi..." style="padding:8px 12px; width:250px; border-radius:10px; border:none; text-align:center;">
+              </div>
+              <div class="menu-grid">
+                      <!-- Espresso -->
+                        <div class="menu-item fade-in" data-name="Espresso" data-price="25000"></div>
+          <div class="menu-item fade-in" data-name="Espresso" data-price="25000">
+            <img 
+              src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=400&q=80" 
+              alt="Espresso" 
+              class="menu-img"
+            />
+            <h3>Espresso</h3>
+            <p>Kopi hitam klasik.</p>
+            <div class="price">Rp 25.000</div>
+            <button class="add-cart-btn">Tambah ke Keranjang</button>
+          </div>
+
+          <!-- Cappuccino -->
+          <div class="menu-item fade-in" data-name="Cappuccino" data-price="35000">
+          <img 
+              src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&w=400&q=80" 
+              alt="Cappuccino Busa" 
+              class="menu-img"
+            />
+            <h3>Cappuccino</h3>
+            <p>Espresso + busa susu lembut.</p>
+            <div class="price">Rp 35.000</div>
+            <button class="add-cart-btn">Tambah ke Keranjang</button>
+          </div>
+
+          <!-- Latte -->
+          <div class="menu-item fade-in" data-name="Latte" data-price="40000">
+            <img 
+              src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" 
+              alt="Latte Art" 
+              class="menu-img"
+    />
+            <h3>Latte</h3>
+            <p>Lembut & creamy.</p>
+            <div class="price">Rp 40.000</div>
+            <button class="add-cart-btn">Tambah ke Keranjang</button>
+          </div>
+          <!-- Cold Brew -->
+          <div class="menu-item fade-in" data-name="Cold Brew" data-price="30000">
+            <img 
+              src="img/WhatsApp Image 2025-11-21 at 18.25.59.jpeg" 
+              alt="Cold Brew" 
+              class="menu-img"
+            />
+            <h3>Cold Brew</h3>
+            <p>Dingin, halus, menyegarkan.</p>
+            <div class="price">Rp 30.000</div>
+            <button class="add-cart-btn">Tambah ke Keranjang</button>
+          </div>
+
+          <!-- Mocha -->
+          <div class="menu-item fade-in" data-name="Mocha" data-price="45000">
+            <img 
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" 
+              alt="Mocha Cokelat Kopi" 
+              class="menu-img"
+            />
+            <h3>Mocha</h3>
+            <p>Campuran espresso, cokelat, dan susu steamed.</p>
+            <div class="price">Rp 45.000</div>
+            <button class="add-cart-btn">Tambah ke Keranjang</button>
+          </div>
+          <script>
+            const searchInput = document.getElementById('menuSearch');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            searchInput.addEventListener('input', () => {
+              const query = searchInput.value.toLowerCase();
+              menuItems.forEach(item => {
+                const name = item.dataset.name.toLowerCase();
+                if(name.includes(query)) {
+                  item.style.display = 'block';
+                } else {
+                  item.style.display = 'none';
+                }
+              });
+            });
+        </script>
+              </div>
+            </section>
+
+            
+            
+              
+            
+          </section>
+
+          <!-- CONTACT -->
+          <section id="contact" class="contact fade-in">
+            <h2>Kontak Kami</h2>
+
+            <form>
+              <input type="text" placeholder="Nama Anda" />
+              <input type="tel" placeholder="Nomor HP / WhatsApp" />
+              <textarea placeholder="Pesan Anda"></textarea>
+              <button class="btn-primary">Kirim Pesan</button>
+            </form>
+
+            <br />
+
+            <h3>Lokasi Kami</h3>
+            <a
+              href="https://maps.app.goo.gl/pDz2nq5TndxHTBbo7"
+              target="_blank"
+              class="btn-primary"
+              style="
+                display: inline-block;
+                text-align: center;
+                padding: 0.8rem 1.5rem;
+                border-radius: 12px;
+              "
+            >
+              📍 Lihat di Google Maps
+            </a>
+          </section>
+          <style>
+            /* Tombol Maps */
+            .map-btn {
+              display: inline-block;
+              background: #ff6f61;
+              color: white;
+              font-weight: 700;
+              padding: 0.8rem 1.5rem;
+              border-radius: 12px;
+              text-decoration: none;
+              transition: 0.3s;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .map-btn:hover {
+              background: #e65b50;
+              transform: translateY(-3px);
+              box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .map-btn:active {
+              transform: translateY(-1px);
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+            /* --------------------------------------------------
+        PARALLAX BACKGROUND
+      -------------------------------------------------- */
+            body::before {
+              content: "";
+              position: fixed;
+              top: 20px;
+              left: 0;
+              right: 20px;
+              bottom: 0;
+              background-image: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1920&q=80"); /* Ganti dengan URL gambar baru */
+              background-size: cover;
+              background-position: center;
+              opacity: 0.18;
+              z-index: -1;
+            }
+
+            /* Opsional: Tambahkan background berbeda untuk mode light */
+            .light-mode body::before {
+              background-image: url("https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1920&q=80"); /* Gambar berbeda untuk mode cahaya */
+            }
+          </style>
+          >
+
+          <!-- WHATSAPP BUTTON -->
+
+          <footer>© 2025 Botanical Bliss Coffee. Semua Hak Dilindungi.</footer>
+
+          <!-- JAVASCRIPT -->
+          <script>
+            // PRELOADER
+            window.onload = () => {
+              document.getElementById("preloader").style.display = "none";
+            };
+
+            // HAMBURGER
+            const hamburger = document.getElementById("hamburger");
+            const navMenu = document.getElementById("nav-menu");
+
+            hamburger.onclick = () => navMenu.classList.toggle("active");
+
+            // SCROLL ANIMATION
+            const fades = document.querySelectorAll(".fade-in");
+            function show() {
+              fades.forEach((el) => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 50) el.classList.add("show");
+              });
+            }
+            window.addEventListener("scroll", show);
+            show();
+
+            // TYPING EFFECT
+            const text = "Mari Nikmati Secangkir Kopi Terbaik ☕";
+            let i = 0;
+            function type() {
+              if (i < text.length) {
+                document.getElementById("typing").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 80);
+              }
+            }
+            type();
+
+            // DARK MODE TOGGLE
+            const themeBtn = document.getElementById("themeButton");
+            themeBtn.onclick = () => {
+              document.body.classList.toggle("light-mode");
+              themeBtn.textContent = document.body.classList.contains("light-mode")
+                ? ""
+                : "";
+            };
+
+            // ==== SHOPPING CART ====
+
+            let  = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Update jumlah item di navbar
+      function updateCartDisplay() {
+        document.getElementById("cartCount").textContent = cart.length;
+      }
+
+      // Simpan cart ke localStorage
+      function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+      }
+
+      // Tambah item ke keranjang
+      document.querySelectorAll(".add-cart-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const item = e.target.closest(".menu-item");
+          const name = item.querySelector("h3").textContent;
+          const price = parseInt(item.dataset.price);
+
+          cart.push({ name, price });
+          saveCart();
+          alert("Berhasil ditambahkan ke keranjang!");
+        });
+      });
+
+      // Buka / tampilkan keranjang
+      
+      cartBtn.addEventListener("click", () => {
+        const itemsDiv = document.getElementById("cartItems");
+        const totalSpan = document.getElementById("cartTotal");
+        itemsDiv.innerHTML = "";
+
+        let total = 0;
+        cart.forEach((item, idx) => {
+          itemsDiv.innerHTML += `
+            <div class="cart-item">
+              <span>${item.name}</span>
+              <span>Rp ${item.price.toLocaleString()}</span>
+              <button onclick="removeCartItem(${idx})" style="background:none;border:none;color:red;cursor:pointer;">❌</button>
+            </div>`;
+          total += item.price;
+          
+        });
+
+        totalSpan.textContent = total.toLocaleString();
+        cartModal.style.display = "flex";
+      });
+
+      // Tutup modal
+      closeCart.addEventListener("click", () => {
+        cartModal.style.display = "none";
+      });
+
+      // Hapus item dari cart
+      function removeCartItem(index) {
+        cart.splice(index, 1);
+        saveCart();
+        cartBtn.click(); // Refresh tampilan modal
+      }
+
+      // Checkout via WhatsApp
+      document.getElementById("checkoutBtn").addEventListener("click", () => {
+        let text = "Halo, saya ingin memesan:%0A";
+        cart.forEach((item) => {
+          text += `- ${item.name} (Rp ${item.price.toLocaleString()})%0A`;
+        });
+        const total = cart.reduce((a,b)=> a+b.price, 0);
+        text += `%0ATotal: Rp ${total.toLocaleString()}`;
+        window.open(`https://wa.me/6285881601103?text=${text}`);
+      });
+
+      // Init
+      updateCartDisplay();
+
+          </script>
+          <script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Update jumlah keranjang di tombol
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.length;
+  }
+
+  // Simpan keranjang
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // Tambah item ke keranjang
+  document.querySelectorAll(".add-cart-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const itemEl = e.target.closest(".menu-item");
+      const name = itemEl.dataset.name;
+      const price = parseInt(itemEl.dataset.price);
+      cart.push({ name, price });
+      saveCart();
+      alert(`${name} berhasil ditambahkan ke keranjang!`);
+    });
+  });
+
+  // Tampilkan modal
+  const cartBtn = document.getElementById("cartBtn");
+  const cartModal = document.getElementById("cartModal");
+  const closeCart = document.getElementById("closeCart");
+  const cartItemsDiv = document.getElementById("cartItems");
+  const cartTotalSpan = document.getElementById("cartTotal");
+
+  cartBtn.addEventListener("click", () => {
+    cartItemsDiv.innerHTML = "";
+    let total = 0;
+    cart.forEach((item, idx) => {
+      total += item.price;
+      cartItemsDiv.innerHTML += `
+        <div class="cart-item">
+          <span>${item.name}</span>
+          <span>Rp ${item.price.toLocaleString()}</span>
+          <button style="background:none;border:none;color:red;cursor:pointer;" onclick="removeItem(${idx})">❌</button>
+        </div>`;
+    });
+    cartTotalSpan.textContent = total.toLocaleString();
+    cartModal.style.display = "flex";
+  });
+
+  // Tutup modal
+  closeCart.addEventListener("click", () => cartModal.style.display = "none");
+
+  // Hapus item
+  function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    cartBtn.click(); // refresh modal
+  }
+
+  // Checkout via WhatsApp
+  document.getElementById("checkoutBtn").addEventListener("click", () => {
+    if(cart.length === 0){ alert("Keranjang kosong!"); return; }
+    let text = "Halo, saya ingin memesan:%0A";
+    let total = 0;
+    cart.forEach(item => {
+      text += `- ${item.name} (Rp ${item.price.toLocaleString()})%0A`;
+      total += item.price;
+    });
+    text += `%0ATotal: Rp ${total.toLocaleString()}`;
+    window.open(`https://wa.me/6285881601103?text=${text}`);
+  });
+
+  // Inisialisasi
+  updateCartCount();
+
+  </script>
+
+        </body>
+      </html>
